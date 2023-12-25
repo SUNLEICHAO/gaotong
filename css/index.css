@@ -1,0 +1,436 @@
+body {
+  height: 3000px;
+}
+
+.w-960 {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.title-blue {
+  height: 48px;
+  padding-left: 22px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #183389;
+  background: url(../img/images/sub-title-intro.png) no-repeat 0px 6px/140px;
+  box-sizing: border-box;
+}
+
+/* 通用的属性 */
+.page-header {
+  height: 74px;
+  display: flex;
+  color: #333;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-user {
+  align-items: center;
+  display: flex;
+}
+
+.header-user .seprete {
+  width: 1px;
+  height: 14px;
+  margin: 0 10px;
+  background-color: #333;
+}
+
+.banner-section {
+  display: flex;
+  height: 458px;
+  color: #fff;
+  background: url(../img/images/banner.jpg) no-repeat center/1920px 458px;
+  box-sizing: border-box;
+}
+
+.banner-section__text {
+  width: 100%;
+  margin-top: 150px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.navigator-section {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #153188;
+}
+
+.navigator-list {
+  display: flex;
+  height: 70px;
+}
+
+.navigator-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navigator-item:hover {
+  background-color: rgba(255, 255, 255, .2);
+
+}
+
+.navigator-item.active {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.introduction-section {
+  margin-top: 60px;
+}
+
+.introduction-title {
+  width: 140px;
+}
+
+.introduction-content {
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.onlinecourses-section {
+  margin-top: 58px;
+}
+
+.onlinecourses-title {
+  width: 150px;
+  background-image: url(../img/images/sub-title-course.jpg);
+  margin-bottom: 30px;
+}
+
+.onlinecourses-video {
+  height: 538px;
+  background: url(../img/images/v.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onlinecourses-video__player {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 75px;
+  height: 75px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.onlinecourses-video__player-pause {
+  margin-left: 10px;
+  border-left: 24px solid #1965C5;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+}
+
+.onlinecourses-course {
+  margin-top: 26px;
+}
+
+.onlinecourses-course__title {
+  font-size: 18px;
+  color: #333;
+}
+
+.onlinecourses-course__about {
+  display: flex;
+  gap: 15px;
+  margin-top: 14px;
+  color: #999;
+  font-size: 12px;
+}
+
+.onlinecourses-course__box {
+  margin-top: 20px;
+  display: flex;
+}
+
+.onlinecourses-course__catalogue {
+  width: 700px;
+}
+
+.catalogue-chapter__title {
+  background-color: #e4e4e4;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.catalogue-chapter__title-arrow {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  background: url(../img/images/arrow-icon.png) no-repeat center/14px;
+}
+
+.catalogue-chapter__title-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+.catalogue-chapter__title-download {
+  width: 18px;
+  height: 18px;
+  background: url(../img/images/download-icon.png) no-repeat center/18px;
+}
+
+.catalogue-chapter__title-download:hover {
+  background-image: url(../img/images/download-icon-hover.png);
+}
+
+.catalogue-chapter__section {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  height: 40px;
+  padding: 0 20px 0 50px;
+  font-size: 12px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.catalogue-chapter__section:last-child {
+  border-bottom: none;
+}
+
+.catalogue-chapter__section-title:hover {
+  color: #009DF7;
+  cursor: pointer;
+}
+
+.onlinecourses-course_rightbox {
+  flex: 1;
+  margin-left: 30px;
+
+}
+
+.onlinecourses-course__info {
+  line-height: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.onlinecourses-course__info>* {
+  margin-top: 20px;
+}
+
+.onlinecourses-course__info .info-title {
+  color: #999;
+  font-size: 12px;
+
+}
+
+.onlinecourses-course__info .info-text {
+  color: #666;
+  font-size: 12px;
+}
+
+.onlinecourses-info__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.onlinecourses-info__suit {
+  margin-top: 18px;
+}
+
+.onlinecourses-info__suit-title {
+  margin-bottom: 9px;
+}
+
+.onlinecourses-info__updated,
+.onlinecourses-info__num {
+  display: flex;
+  gap: 10px;
+}
+
+.onlinecourses-info__num-icon {
+  width: 170px;
+  height: 45px;
+  margin-top: 10px;
+  background: url(../img/images/logo_qua.png) no-repeat center/170px 45px;
+}
+
+.onlinecourses-info__tags-list {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.onlinecourses-info__tags-item {
+  padding: 5px;
+  line-height: 12px;
+  font-size: 12px;
+  background-color: #f7f7f7;
+  border-radius: 2px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.onlinecourses-contact__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 16px 0 20px;
+}
+
+.onlinecourses-contact__item {
+  display: flex;
+  align-items: center;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.onlinecourses-contact__item-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 6px;
+  background: url(../img/images/icon_weibo.png) no-repeat center;
+}
+
+.qq .onlinecourses-contact__item-icon {
+  background-image: url(../img/images/icon_qq.png);
+}
+
+
+
+.onlinecourses-contact__item-text {
+  font-size: 12px;
+}
+
+.onlinecourses-contact__item-text-top {
+  margin-bottom: 8px;
+}
+
+.onlinecourses-contact__item-text-bottom {
+  display: flex;
+}
+
+.onlinecourses-contact__item-text-item {
+  position: relative;
+  padding: 5px 12px;
+  margin-right: 10px;
+  color: #fff;
+  border-radius: 2px;
+  line-height: 12px;
+  background-color: #00A8FF;
+  cursor: pointer;
+}
+
+.qrcode-popup.text {
+  position: absolute;
+  display: none;
+}
+
+.qrcode-popup.img {
+  position: absolute;
+  display: none;
+  top: 28px;
+  left: -15px;
+  z-index: 9;
+  width: 90px;
+  height: 118px;
+  background: url(../img/images/qrcode-weixin.png) no-repeat center/90px 118px;
+}
+
+.onlinecourses-contact__item-text-item:hover .qrcode-popup.img {
+  display: block;
+}
+
+.teachers-title {
+  width: 140px;
+  height: 52px;
+  background: url(../img/images/sub-title-teacher.jpg) no-repeat center;
+}
+
+.teachers-box {
+  align-items: center;
+  display: flex;
+  height: 192px;
+  margin-top: 50px;
+}
+
+.teachers-list {
+  flex: 1;
+
+}
+
+.teachers-prev,
+.teachers-next {
+  width: 25px;
+  height: 40px;
+  background: url(../img/images/arrow_left.png) no-repeat center/25px 40px;
+  cursor: pointer;
+}
+
+.teachers-next {
+  transform: rotate(180deg);
+}
+
+.teachers-prev:hover,
+.teachers-next:hover {
+  background-image: url(../img/images/arrow_right-hover.png);
+  transform: rotate(0deg);
+}
+
+.teachers-prev:hover {
+  transform: rotate(180deg);
+}
+
+.teachers-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.teachers-item {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  width: 196px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.teachers-item__portrait {
+  width: 80px;
+  height: 80px;
+  background: url(../img/images/t_1.jpg) no-repeat center;
+}
+
+.xms .teachers-item__portrait {
+  background-image: url(../img/images/t_2.jpg);
+}
+
+.zqq .teachers-item__portrait {
+  background-image: url(../img/images/t_3.jpg);
+}
+
+.wqm .teachers-item__portrait {
+  background-image: url(../img/images/t_4.jpg);
+}
+
+.teachers-item__name {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  margin: 14px 0 10px;
+}
+
+.teachers-item__title {
+  color: #999;
+  font-size: 12px;
+}
+
+.teachers-item__info {
+  margin-top: 10px;
+}
