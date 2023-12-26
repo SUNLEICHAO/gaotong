@@ -7,57 +7,69 @@ body {
   margin: 0 auto;
 }
 
-.title-blue {
+.topic-blue {
   height: 48px;
   padding-left: 22px;
   margin-bottom: 30px;
+  box-sizing: border-box;
   font-size: 20px;
   font-weight: bold;
   color: #183389;
   background: url(../img/images/sub-title-intro.png) no-repeat 0px 6px/140px;
-  box-sizing: border-box;
 }
 
-/* 通用的属性 */
+/* 以上为通用的属性 */
+
 .page-header {
-  height: 74px;
-  display: flex;
-  color: #333;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  display: flex;
+  height: 74px;
+  color: #333;
 }
 
 .header-user {
   align-items: center;
   display: flex;
+  font-size: 12px;
 }
 
 .header-user .seprete {
   width: 1px;
-  height: 14px;
+  height: 12px;
   margin: 0 10px;
   background-color: #333;
+}
+
+.header-user__login,
+.header-user__logup {
+  cursor: pointer;
+}
+
+.header-user__login:hover,
+.header-user__logup:hover {
+  color: #000;
 }
 
 .banner-section {
   display: flex;
   height: 458px;
+  box-sizing: border-box;
   color: #fff;
   background: url(../img/images/banner.jpg) no-repeat center/1920px 458px;
-  box-sizing: border-box;
 }
 
 .banner-section__text {
   width: 100%;
-  margin-top: 150px;
+  margin-top: 160px;
   font-size: 40px;
   text-align: center;
 }
 
 .navigator-section {
-  color: #fff;
   font-size: 16px;
   font-weight: bold;
+  color: #fff;
   background-color: #153188;
 }
 
@@ -68,15 +80,14 @@ body {
 
 .navigator-item {
   flex: 1;
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: flex;
   cursor: pointer;
 }
 
 .navigator-item:hover {
   background-color: rgba(255, 255, 255, .2);
-
 }
 
 .navigator-item.active {
@@ -87,7 +98,7 @@ body {
   margin-top: 60px;
 }
 
-.introduction-title {
+.introduction-topic {
   width: 140px;
 }
 
@@ -100,18 +111,18 @@ body {
   margin-top: 58px;
 }
 
-.onlinecourses-title {
+.onlinecourses-topic {
   width: 150px;
-  background-image: url(../img/images/sub-title-course.jpg);
   margin-bottom: 30px;
+  background-image: url(../img/images/sub-title-course.jpg);
 }
 
 .onlinecourses-video {
-  height: 538px;
-  background: url(../img/images/v.jpg);
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: flex;
+  height: 538px;
+  background: url(../img/images/v.jpg);
 }
 
 .onlinecourses-video__player {
@@ -142,16 +153,16 @@ body {
 }
 
 .onlinecourses-course__about {
-  display: flex;
   gap: 15px;
+  display: flex;
   margin-top: 14px;
-  color: #999;
   font-size: 12px;
+  color: #999;
 }
 
 .onlinecourses-course__box {
-  margin-top: 20px;
   display: flex;
+  margin-top: 20px;
 }
 
 .onlinecourses-course__catalogue {
@@ -159,24 +170,26 @@ body {
 }
 
 .catalogue-chapter__title {
-  background-color: #e4e4e4;
+  align-items: center;
   display: flex;
   height: 40px;
-  align-items: center;
   padding: 0 20px;
+  background-color: #e4e4e4;
   cursor: pointer;
 }
 
 .catalogue-chapter__title-arrow {
-  margin-right: 10px;
   width: 20px;
   height: 20px;
+  margin-right: 10px;
   background: url(../img/images/arrow-icon.png) no-repeat center/14px;
 }
 
 .catalogue-chapter__title-text {
   flex: 1;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 14px;
+  font-weight: 450;
 }
 
 .catalogue-chapter__title-download {
@@ -203,6 +216,10 @@ body {
   border-bottom: none;
 }
 
+.catalogue-chapter__section-title {
+  font-size: 12px;
+}
+
 .catalogue-chapter__section-title:hover {
   color: #009DF7;
   cursor: pointer;
@@ -211,12 +228,11 @@ body {
 .onlinecourses-course_rightbox {
   flex: 1;
   margin-left: 30px;
-
 }
 
 .onlinecourses-course__info {
-  line-height: 18px;
   padding-bottom: 18px;
+  line-height: 18px;
   border-bottom: 1px solid #f5f5f5;
 }
 
@@ -225,20 +241,19 @@ body {
 }
 
 .onlinecourses-course__info .info-title {
-  color: #999;
   font-size: 12px;
-
+  color: #999;
 }
 
 .onlinecourses-course__info .info-text {
-  color: #666;
   font-size: 12px;
+  color: #666;
 }
 
 .onlinecourses-info__title {
+  margin-top: 0;
   font-size: 16px;
   font-weight: bold;
-  margin-top: 0;
 }
 
 .onlinecourses-info__suit {
@@ -251,8 +266,8 @@ body {
 
 .onlinecourses-info__updated,
 .onlinecourses-info__num {
-  display: flex;
   gap: 10px;
+  display: flex;
 }
 
 .onlinecourses-info__num-icon {
@@ -263,32 +278,32 @@ body {
 }
 
 .onlinecourses-info__tags-list {
-  margin-top: 10px;
-  display: flex;
   flex-wrap: wrap;
+  display: flex;
+  margin-top: 10px;
 }
 
 .onlinecourses-info__tags-item {
   padding: 5px;
-  line-height: 12px;
-  font-size: 12px;
-  background-color: #f7f7f7;
-  border-radius: 2px;
   margin-right: 5px;
   margin-bottom: 5px;
+  font-size: 12px;
+  line-height: 12px;
+  background-color: #f7f7f7;
+  border-radius: 2px;
 }
 
 .onlinecourses-contact__title {
+  margin: 16px 0 20px;
   font-size: 16px;
   font-weight: bold;
-  margin: 16px 0 20px;
 }
 
 .onlinecourses-contact__item {
-  display: flex;
   align-items: center;
-  color: #666;
+  display: flex;
   margin-bottom: 10px;
+  color: #666;
 }
 
 .onlinecourses-contact__item-icon {
@@ -301,8 +316,6 @@ body {
 .qq .onlinecourses-contact__item-icon {
   background-image: url(../img/images/icon_qq.png);
 }
-
-
 
 .onlinecourses-contact__item-text {
   font-size: 12px;
@@ -320,10 +333,10 @@ body {
   position: relative;
   padding: 5px 12px;
   margin-right: 10px;
-  color: #fff;
-  border-radius: 2px;
   line-height: 12px;
+  color: #fff;
   background-color: #00A8FF;
+  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -347,7 +360,7 @@ body {
   display: block;
 }
 
-.teachers-title {
+.teachers-topic {
   width: 140px;
   height: 52px;
   background: url(../img/images/sub-title-teacher.jpg) no-repeat center;
@@ -360,13 +373,9 @@ body {
   margin-top: 50px;
 }
 
-.teachers-list {
-  flex: 1;
-
-}
-
 .teachers-prev,
 .teachers-next {
+  flex-shrink: 0;
   width: 25px;
   height: 40px;
   background: url(../img/images/arrow_left.png) no-repeat center/25px 40px;
@@ -388,6 +397,7 @@ body {
 }
 
 .teachers-list {
+  flex: 1;
   display: flex;
   justify-content: space-between;
 }
@@ -419,10 +429,14 @@ body {
   background-image: url(../img/images/t_4.jpg);
 }
 
+.zj .teachers-item__portrait {
+  background-image: url(../img/images/t_5.jpg);
+}
+
 .teachers-item__name {
   font-size: 14px;
-  color: #333;
   font-weight: bold;
+  color: #333;
   margin: 14px 0 10px;
 }
 
@@ -433,4 +447,178 @@ body {
 
 .teachers-item__info {
   margin-top: 10px;
+}
+
+.products-topic {
+  width: 320px;
+  height: 50px;
+  margin: 60px 0 30px;
+  background: url(../img/images/sub-title-410.png) no-repeat center/320px 50px;
+}
+
+.products-content {
+  gap: 20px;
+  display: flex;
+  padding-bottom: 30px;
+}
+
+.products-left {
+  flex-shrink: 0;
+  flex-basis: 300px;
+  width: 300px;
+  height: 210px;
+  background: url(../img/images/img_1.jpg) no-repeat center/300px 210px;
+}
+
+.products-title {
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #333;
+}
+
+.products-desc {
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+}
+
+.products-actions {
+  display: flex;
+}
+
+.prodcts-action {
+  padding: 12px 35px;
+  line-height: 16px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.prodcts-action.buy {
+  margin-right: 16px;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #00A8FF;
+}
+
+.prodcts-action.more {
+  color: #00A8FF;
+  background-color: #fff;
+  border: 1px solid #00A8FF;
+}
+
+.products-recommend {
+  gap: 10px;
+  align-items: center;
+  display: flex;
+  margin-top: 24px;
+}
+
+.products-recommend__title {
+  font-size: 16px;
+  line-height: 16px;
+  color: #666;
+}
+
+.products-recommend__product {
+  padding: 8px 18px;
+  font-size: 14px;
+  color: #1C7C89;
+  background-color: #CAEAEF;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.products-links {
+  gap: 30px;
+  display: flex;
+  height: 120px;
+  padding: 32px 0;
+  border-top: 1px solid #F5F5F5;
+  border-bottom: 1px solid #F5F5F5;
+}
+
+.products-link {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+  background: url(../img/images/bg_red.jpg);
+}
+
+.products-link:nth-child(2) {
+  background: url(../img/images/bg_ora.jpg);
+}
+
+.products-link:nth-child(3) {
+  background: url(../img/images/bg_blue.jpg);
+}
+
+.about-section {
+  margin-top: 30px;
+}
+
+.about-topic {
+  width: 210px;
+  height: 50px;
+  background: url(../img/images/about_title.jpg) no-repeat center;
+}
+
+.about-links {
+  padding: 50px 0 120px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.about-link {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.about-link__cover {
+  width: 148px;
+  height: 148px;
+  background: url(../img/images/about_qualcomm.jpg) no-repeat center;
+  cursor: pointer;
+}
+
+.about-link__cover:hover {
+  opacity: .6;
+}
+
+.about-link:nth-child(2) .about-link__cover {
+  background-image: url(../img/images/about_weibo.jpg);
+}
+
+.about-link:nth-child(3) .about-link__cover {
+  background-image: url(../img/images/about_qq.jpg);
+}
+
+.about-link__title {
+  margin: 22px 0 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.about-link__desc {
+  font-size: 12px;
+  line-height: 12px;
+  color: #999;
+}
+
+.about-link__join {
+  padding: 8px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #fff;
+  background-color: #00A8FF;
+  border-radius: 2px;
+  cursor: pointer;
 }
