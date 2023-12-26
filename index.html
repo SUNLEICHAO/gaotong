@@ -29,13 +29,15 @@
       </div>
     </div>
 
-    <div class="navigator-section ">
-      <div class="navigator-list  w-960">
-        <div class="navigator-item active">合作课程简介</div>
-        <div class="navigator-item">观看课程</div>
-        <div class="navigator-item">授课老师</div>
-        <div class="navigator-item">DragonBoard™ 410c</div>
-        <div class="navigator-item">关于 Qualcomm</div>
+    <div class="navigator-section">
+      <div class="navigator-container">
+        <div class="navigator-list w-960 ">
+          <div class="navigator-item active" data-nav="introduction-section">合作课程简介</div>
+          <div class="navigator-item " data-nav="onlinecourses-section">观看课程</div>
+          <div class="navigator-item" data-nav="teachers-section">授课老师</div>
+          <div class="navigator-item" data-nav="products-section">DragonBoard™ 410c</div>
+          <div class="navigator-item" data-nav="about-section">关于 Qualcomm</div>
+        </div>
       </div>
     </div>
 
@@ -54,14 +56,20 @@
       <div class="onlinecourses-container w-960">
         <div class="onlinecourses-topic topic-blue">观看课程</div>
         <div class="onlinecourses-video">
-          <div class="onlinecourses-video__player">
-            <div class="onlinecourses-video__player-pause"></div>
+          <video id="course-video">
+            <source src="./img/demo.mp4" type="video/mp4" />
+            <p>
+              Your browser doesn't support HTML5 video. Here is a
+            </p>
+          </video>
+          <div class="onlinecourses-video__control">
+            <div class="onlinecourses-video__control-pause"></div>
           </div>
         </div>
         <div class="onlinecourses-course">
           <div class="onlinecourses-course__title">DragonBoard™ 410c开发公开课</div>
           <div class="onlinecourses-course__about">
-            <span class="onlinecourses-course__about-lessons">共10门课程 </span>
+            <span class="onlinecourses-course__about-lessons">共10门课程</span>
             <span class="onlinecourses-course__about-finished">已上线2门</span>
             <span class="onlinecourses-course__about-duration">时长：35分17秒</span>
           </div>
@@ -186,7 +194,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -197,41 +204,42 @@
         <div class="teachers-topic"></div>
         <div class="teachers-box">
           <div class="teachers-prev"></div>
-          <div class="teachers-list">
-            <div class="teachers-item lh">
-              <div class="teachers-item__portrait"></div>
-              <div class="teachers-item__name">龙辉</div>
-              <div class="teachers-item__title">中科创达软件工程师</div>
-              <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
-              <div class="teachers-item__info">从事安卓驱动研究，专注于display驱动研发，在嵌入式软件开发上有...</div>
+          <div class="teachers-container">
+            <div class="teachers-list">
+              <div class="teachers-item lh">
+                <div class="teachers-item__portrait"></div>
+                <div class="teachers-item__name">龙辉</div>
+                <div class="teachers-item__title">中科创达软件工程师</div>
+                <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
+                <div class="teachers-item__info">从事安卓驱动研究，专注于display驱动研发，在嵌入式软件开发上有...</div>
+              </div>
+              <div class="teachers-item xms">
+                <div class="teachers-item__portrait"></div>
+                <div class="teachers-item__name">肖淼森</div>
+                <div class="teachers-item__title">中科创达软件工程师</div>
+                <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
+                <div class="teachers-item__info">软件研发从业3年，专注android驱动软件研发。</div>
+              </div>
+              <div class="teachers-item zqq">
+                <div class="teachers-item__portrait"></div>
+                <div class="teachers-item__name">张强强</div>
+                <div class="teachers-item__title">中科创达软件工程师</div>
+                <div class="teachers-item__info">专注于Android底层驱动开发，有一定的Linux驱动开发经验。</div>
+              </div>
+              <div class="teachers-item wqm">
+                <div class="teachers-item__portrait"></div>
+                <div class="teachers-item__name">王庆民</div>
+                <div class="teachers-item__title">中科创达软件工程师</div>
+                <div class="teachers-item__info">软件开发从业7年，具有丰富的An-droid、linux等经验，精通Frame-work、多媒体和音视频。</div>
+              </div>
+              <div class="teachers-item zj">
+                <div class="teachers-item__portrait"></div>
+                <div class="teachers-item__name">张俊</div>
+                <div class="teachers-item__title">中科创达软件工程师</div>
+                <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
+                <div class="teachers-item__info">软件开发从业6年，专注于andriod底层驱动开发，在Qualcomm平台手机方案都有一定经验</div>
+              </div>
             </div>
-            <div class="teachers-item xms">
-              <div class="teachers-item__portrait"></div>
-              <div class="teachers-item__name">肖淼森</div>
-              <div class="teachers-item__title">中科创达软件工程师</div>
-              <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
-              <div class="teachers-item__info">软件研发从业3年，专注android驱动软件研发。</div>
-            </div>
-            <div class="teachers-item zqq">
-              <div class="teachers-item__portrait"></div>
-              <div class="teachers-item__name">张强强</div>
-              <div class="teachers-item__title">中科创达软件工程师</div>
-              <div class="teachers-item__info">专注于Android底层驱动开发，有一定的Linux驱动开发经验。</div>
-            </div>
-            <div class="teachers-item wqm">
-              <div class="teachers-item__portrait"></div>
-              <div class="teachers-item__name">王庆民</div>
-              <div class="teachers-item__title">中科创达软件工程师</div>
-              <div class="teachers-item__info">软件开发从业7年，具有丰富的An-droid、linux等经验，精通Frame-work、多媒体和音视频</div>
-            </div>
-            <!-- 问题：flex中能让其中一个元素，产生overflow的效果吗 -->
-            <!-- <div class="teachers-item zj">
-              <div class="teachers-item__portrait"></div>
-              <div class="teachers-item__name">张俊</div>
-              <div class="teachers-item__title">中科创达软件工程师</div>
-              <div class="teachers-item__title">Qualcomm开发者社区技术支持</div>
-              <div class="teachers-item__info">软件开发从业6年，专注于andriod底层驱动开发，在Qualcomm平台手机方案都有一定经验</div>
-            </div> -->
           </div>
           <div class="teachers-next"></div>
         </div>
@@ -292,11 +300,7 @@
     </div>
   </div>
 
-  <script>
-    window.onload = function () {
-      // ((x) => window.scrollTo({ top: x, behavior: 'smooth' }))(900)
-    }
-  </script>
+  <script src="./js/index.js"></script>
 </body>
 
 </html>

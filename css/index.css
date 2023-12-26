@@ -1,5 +1,5 @@
 body {
-  height: 3000px;
+  /* height: 3000px; */
 }
 
 .w-960 {
@@ -67,16 +67,29 @@ body {
 }
 
 .navigator-section {
+  height: 70px;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
+}
+
+.navigator-container {
+  height: 70px;
+  width: 100%;
   background-color: #153188;
+  z-index: 10;
+}
+
+.navigator-section.fixed .navigator-container {
+  position: fixed;
+  top: 0;
 }
 
 .navigator-list {
   display: flex;
   height: 70px;
 }
+
 
 .navigator-item {
   flex: 1;
@@ -123,9 +136,17 @@ body {
   display: flex;
   height: 538px;
   background: url(../img/images/v.jpg);
+  cursor: pointer;
 }
 
-.onlinecourses-video__player {
+.onlinecourses-video video {
+  width: 960px;
+  /* 初始隐藏起来,点击后,更改该属性 */
+  display: none;
+}
+
+.onlinecourses-video__control {
+  position: absolute;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -134,9 +155,14 @@ body {
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
+  transition: all .5s ease-in;
 }
 
-.onlinecourses-video__player-pause {
+.onlinecourses-video__control.playing {
+  opacity: 0;
+}
+
+.onlinecourses-video__control-pause {
   margin-left: 10px;
   border-left: 24px solid #1965C5;
   border-top: 16px solid transparent;
@@ -169,13 +195,17 @@ body {
   width: 700px;
 }
 
+.catalogue-chapter {
+  transition: height 1s;
+  overflow: hidden;
+}
+
 .catalogue-chapter__title {
   align-items: center;
   display: flex;
   height: 40px;
   padding: 0 20px;
   background-color: #e4e4e4;
-  cursor: pointer;
 }
 
 .catalogue-chapter__title-arrow {
@@ -183,6 +213,14 @@ body {
   height: 20px;
   margin-right: 10px;
   background: url(../img/images/arrow-icon.png) no-repeat center/14px;
+  transform: rotate(0deg);
+  transition: transform 1s;
+  cursor: pointer;
+
+}
+
+.catalogue-chapter.collapsed .catalogue-chapter__title-arrow {
+  transform: rotate(-90deg);
 }
 
 .catalogue-chapter__title-text {
@@ -190,6 +228,7 @@ body {
   font-size: 15px;
   line-height: 14px;
   font-weight: 450;
+  cursor: pointer;
 }
 
 .catalogue-chapter__title-download {
@@ -369,7 +408,8 @@ body {
 .teachers-box {
   align-items: center;
   display: flex;
-  height: 192px;
+  /* height: 192px; */
+  height: 210px;
   margin-top: 50px;
 }
 
@@ -396,19 +436,32 @@ body {
   transform: rotate(180deg);
 }
 
-.teachers-list {
+.teachers-container {
   flex: 1;
+  overflow: hidden;
+}
+
+.teachers-list {
+  position: relative;
+  left: 0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  transition: all .4s;
 }
 
 .teachers-item {
+  flex-shrink: 0;
   flex-direction: column;
   align-items: center;
   display: flex;
   width: 196px;
   font-size: 12px;
   line-height: 16px;
+  margin-right: 42px;
+}
+
+.teachers-item:last-child {
+  margin-right: 0;
 }
 
 .teachers-item__portrait {
@@ -619,6 +672,7 @@ body {
   line-height: 14px;
   color: #fff;
   background-color: #00A8FF;
+  /* background-color: red; */
   border-radius: 2px;
   cursor: pointer;
 }
