@@ -186,7 +186,7 @@ const PAGE = {
       }
     }
   },
-  handleSlide: function () {
+  handleSlide: function (e) {
     let teacherList = document.getElementsByClassName('teachers-list')[0]
     let totalWidth = (teacherList.children[1].offsetLeft) * teacherList.children.length;
 
