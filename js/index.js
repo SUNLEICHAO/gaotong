@@ -186,29 +186,20 @@ const PAGE = {
       }
     }
   },
-  handleSlide: function (e) {
-
-
+  handleSlide: function () {
     let teacherList = document.getElementsByClassName('teachers-list')[0]
-    // let teacherListL = teacherList.cloneNode('deep');
-    // console.log(teacherListL);
-    // let teacherListR = teacherList.cloneNode();
-    // teacherList.parentNode.append(teacherListL)
-    // console.log(teacherListL);
+    let totalWidth = (teacherList.children[1].offsetLeft) * teacherList.children.length;
 
-    console.log(teacherList.offsetWidth);
     if (!PAGE.data.isCloned) {
-      // 如果没有被克隆，进行克隆
+      // 如果没有被克隆，进行dom克隆
       let teacherListR = teacherList.cloneNode('deep')
       teacherListR.style.position = 'absolute'
-      teacherListR.style.left = teacherList.offsetLeft + teacherList.offsetWidth + 'px'
-      console.log(teacherList.offsetLeft);
-      console.log(teacherList.offsetWidth);
+      teacherListR.style.left = totalWidth + 'px'
       teacherListR.style.top = '0px'
 
       let teacherListL = teacherListR.cloneNode('deep')
       teacherListL.style.position = 'absolute'
-      teacherListL.style.left = -(teacherList.offsetLeft + teacherList.offsetWidth) + 'px'
+      teacherListL.style.left = -totalWidth + 'px'
       teacherListL.style.top = '0px'
 
       teacherList.parentNode.insertBefore(teacherListL, teacherList)
@@ -223,11 +214,7 @@ const PAGE = {
       })
       if (parseInt(document.getElementsByClassName('teachers-list')[0].style.left) >= 0) {
         Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
-          ele.style.transition = 'none'
-          ele.style.left = parseInt(ele.style.left || 0) - 1190 + 'px'
-          setTimeout(() => {
-            ele.style.transition = 'left .4s'
-          }, 0)
+          ele.style.left = parseInt(ele.style.left || 0) - totalWidth + 'px'
         })
       }
     } else if (e.target.className === 'teachers-next') {
@@ -235,10 +222,10 @@ const PAGE = {
         ele.style.left = parseInt(ele.style.left || 0) - 238 + 'px'
       })
       // 移动完后,检查,是否该偏移到第二个
-      if (parseInt(document.getElementsByClassName('teachers-list')[2].style.left) <= -238) {
+      if (parseInt(document.getElementsByClassName('teachers-list')[2].style.left) <= 0) {
         Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
           // ele.style.transition = 'none'
-          ele.style.left = parseInt(ele.style.left || 0) + 1190 + 'px'
+          ele.style.left = parseInt(ele.style.left || 0) + totalWidth + 'px'
           // setTimeout(() => {
           // ele.style.transition = 'left 3s'
           // }, 0)
