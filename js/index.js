@@ -6,6 +6,7 @@ const PAGE = {
     navigatorBarHeight: 0,
     isfixed: false,
     isPlay: false,
+    isCloned: false,
   },
   init: function () {
     // 初始化导航栏到顶部的距离以及导航栏的高度
@@ -39,11 +40,15 @@ const PAGE = {
     let control = document.getElementsByClassName('onlinecourses-video')[0];
     control.addEventListener('click', this.handleControl)
 
+    // 点击关闭视频播放页面
+    let close = document.getElementsByClassName('onlinecourses-video__close')[0];
+    close.addEventListener('click', this.handleClose)
+
     // 单点轮播图
     // 初始化宽度
-    let teacherList = document.getElementsByClassName('teachers-list')[0]
-    let teacherWidth = teacherList.children[1].offsetLeft - teacherList.children[0].offsetLeft;
-    teacherList.style.width = teacherWidth * 4 + 'px';
+    // let teacherList = document.getElementsByClassName('teachers-list')[0]
+    // let teacherWidth = teacherList.children[1].offsetLeft - teacherList.children[0].offsetLeft;
+    // teacherList.style.width = teacherWidth * 4 + 'px';
     // 为prev和next绑定事件
     let prev = document.getElementsByClassName('teachers-prev')[0]
     let next = document.getElementsByClassName('teachers-next')[0]
@@ -96,7 +101,7 @@ const PAGE = {
     let tarClass = e.target.dataset.nav;
     let tarTop = document.getElementsByClassName(tarClass)[0].offsetTop - PAGE.data.navigatorBarHeight
     window.scrollTo({
-      top: tarTop,
+      top: tarTop - 15,
       behavior: 'smooth'
     })
   },
@@ -130,9 +135,10 @@ const PAGE = {
     }
   },
   coursePlay: function () {
-    let tarTop = document.getElementsByClassName('onlinecourses-video')[0].offsetTop - PAGE.data.navigatorBarHeight;
+    let tarTop = document.getElementsByClassName('onlinecourses-container')[0].offsetTop - PAGE.data.navigatorBarHeight
+    // let tarTop = document.getElementsByClassName('onlinecourses-video')[0].offsetTop - PAGE.data.navigatorBarHeight;
     window.scrollTo({
-      top: tarTop,
+      top: tarTop - 15,
       behavior: 'smooth'
     })
 
@@ -142,6 +148,14 @@ const PAGE = {
   handleControl: function () {
     // 问题,为什么只能用这种引用
     PAGE.handleVideo()
+  },
+  handleClose: function (e) {
+    // 阻止冒泡
+    e.stopPropagation();
+
+    let video = document.getElementById('course-video');
+    video.pause()
+    video.style.display = 'none'
   },
   handleVideo: function (isPlay) {
     let video = document.getElementById('course-video');
@@ -173,11 +187,63 @@ const PAGE = {
     }
   },
   handleSlide: function (e) {
+
+
     let teacherList = document.getElementsByClassName('teachers-list')[0]
+    // let teacherListL = teacherList.cloneNode('deep');
+    // console.log(teacherListL);
+    // let teacherListR = teacherList.cloneNode();
+    // teacherList.parentNode.append(teacherListL)
+    // console.log(teacherListL);
+
+    console.log(teacherList.offsetWidth);
+    if (!PAGE.data.isCloned) {
+      // 如果没有被克隆，进行克隆
+      let teacherListR = teacherList.cloneNode('deep')
+      teacherListR.style.position = 'absolute'
+      teacherListR.style.left = teacherList.offsetLeft + teacherList.offsetWidth + 'px'
+      console.log(teacherList.offsetLeft);
+      console.log(teacherList.offsetWidth);
+      teacherListR.style.top = '0px'
+
+      let teacherListL = teacherListR.cloneNode('deep')
+      teacherListL.style.position = 'absolute'
+      teacherListL.style.left = -(teacherList.offsetLeft + teacherList.offsetWidth) + 'px'
+      teacherListL.style.top = '0px'
+
+      teacherList.parentNode.insertBefore(teacherListL, teacherList)
+      teacherList.parentNode.append(teacherListR)
+
+      PAGE.data.isCloned = true;
+
+    }
     if (e.target.className === 'teachers-prev') {
-      teacherList.style.left = 0 + 'px'
+      Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
+        ele.style.left = parseInt(ele.style.left || 0) + 238 + 'px'
+      })
+      if (parseInt(document.getElementsByClassName('teachers-list')[0].style.left) >= 0) {
+        Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
+          ele.style.transition = 'none'
+          ele.style.left = parseInt(ele.style.left || 0) - 1190 + 'px'
+          setTimeout(() => {
+            ele.style.transition = 'left .4s'
+          }, 0)
+        })
+      }
     } else if (e.target.className === 'teachers-next') {
-      teacherList.style.left = -238 + 'px'
+      Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
+        ele.style.left = parseInt(ele.style.left || 0) - 238 + 'px'
+      })
+      // 移动完后,检查,是否该偏移到第二个
+      if (parseInt(document.getElementsByClassName('teachers-list')[2].style.left) <= -238) {
+        Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
+          // ele.style.transition = 'none'
+          ele.style.left = parseInt(ele.style.left || 0) + 1190 + 'px'
+          // setTimeout(() => {
+          // ele.style.transition = 'left 3s'
+          // }, 0)
+        })
+      }
     }
   }
 
