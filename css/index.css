@@ -471,7 +471,9 @@ body {
   left: 0px;
   display: flex;
   justify-content: flex-start;
+  /* 使用js替换，灵活性更强 */
   /* transition: all .5s; */
+  transition-property: left;
 }
 
 .teachers-item {

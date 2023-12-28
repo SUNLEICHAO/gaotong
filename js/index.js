@@ -4,6 +4,8 @@ const PAGE = {
     navigatorBarActiveClass: null,
     navigatorBarFixedOffset: 0,
     navigatorBarHeight: 0,
+    // 顶部预留空间，解决直接定位到标题，充满压迫感
+    topReservation: 20,
     isfixed: false,
     isPlay: false,
     isCloned: false,
@@ -52,8 +54,9 @@ const PAGE = {
     // 为prev和next绑定事件
     let prev = document.getElementsByClassName('teachers-prev')[0]
     let next = document.getElementsByClassName('teachers-next')[0]
-    prev.addEventListener('click', this.handleSlide)
-    next.addEventListener('click', this.handleSlide)
+    this.addDom()
+    prev.addEventListener('click', this.throttle(this.handleSlide, 500))
+    next.addEventListener('click', this.throttle(this.handleSlide, 500))
   },
   onEventListener: function (parentNode, action, childClassName, callback) {
     parentNode.addEventListener(action, (e) => {
@@ -61,6 +64,28 @@ const PAGE = {
         callback(e)
       }
     })
+  },
+  debounce: function (handler, delay) {
+    // 防抖
+    let timer;
+    return function () {
+      let self = this, arg = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        handler.apply(self, arg)
+      }, delay)
+    }
+  },
+  throttle: function (handler, wait) {
+    // 节流
+    let lastTime = 0;
+    return function () {
+      let nowTime = new Date().getTime();
+      if (nowTime - lastTime > wait) {
+        handler.apply(this, arguments);
+        lastTime = nowTime;
+      }
+    }
   },
   refreshNavigator: function () {
     // 滚动时，根据滚动位置自动fixed
@@ -82,7 +107,7 @@ const PAGE = {
     if (offsetTop < PAGE.data.navigatorBarFixedOffset - PAGE.data.navigatorBarHeight) return
     let overClasses = PAGE.data.navigatorBarClassArr.filter(e => {
       document.getElementsByClassName(e)[0].className = e
-      return offsetTop >= document.getElementsByClassName(e)[0].offsetTop - PAGE.data.navigatorBarHeight;
+      return offsetTop >= document.getElementsByClassName(e)[0].offsetTop - PAGE.data.navigatorBarHeight - PAGE.data.topReservation;
     })
     let navigatorBarActiveClass = overClasses.length ? overClasses[overClasses.length - 1] : null;
     if (navigatorBarActiveClass !== PAGE.data.navigatorBarActiveClass) {
@@ -99,9 +124,9 @@ const PAGE = {
   },
   scrollNav: function (e) {
     let tarClass = e.target.dataset.nav;
-    let tarTop = document.getElementsByClassName(tarClass)[0].offsetTop - PAGE.data.navigatorBarHeight
+    let tarTop = document.getElementsByClassName(tarClass)[0].offsetTop - PAGE.data.navigatorBarHeight - PAGE.data.topReservation;
     window.scrollTo({
-      top: tarTop - 15,
+      top: tarTop,
       behavior: 'smooth'
     })
   },
@@ -186,10 +211,10 @@ const PAGE = {
       }
     }
   },
-  handleSlide: function (e) {
+  addDom: function () {
     let teacherList = document.getElementsByClassName('teachers-list')[0]
-    let totalWidth = (teacherList.children[1].offsetLeft) * teacherList.children.length;
-
+    let singleWidth = teacherList.children[1].offsetLeft;
+    let totalWidth = singleWidth * teacherList.children.length;
     if (!PAGE.data.isCloned) {
       // 如果没有被克隆，进行dom克隆
       let teacherListR = teacherList.cloneNode('deep')
@@ -202,37 +227,54 @@ const PAGE = {
       teacherListL.style.left = -totalWidth + 'px'
       teacherListL.style.top = '0px'
 
+      teacherListR.style.cssText += `transition-duration: 5s;`
+      teacherListL.style.cssText += `transition-duration: 5s;`
+
       teacherList.parentNode.insertBefore(teacherListL, teacherList)
       teacherList.parentNode.append(teacherListR)
 
       PAGE.data.isCloned = true;
-
     }
+  },
+  handleSlide: function (e) {
+    let teachersList = document.getElementsByClassName('teachers-list');
+    let singleWidth = teachersList[0].children[1].offsetLeft;
+    let totalWidth = singleWidth * teachersList[0].children.length;
+
     if (e.target.className === 'teachers-prev') {
-      Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
-        ele.style.left = parseInt(ele.style.left || 0) + 238 + 'px'
+      // #prev逻辑
+      Array.from(teachersList).forEach((ele, index) => {
+        ele.style.left = parseInt(ele.style.left || 0) + singleWidth + 'px'
+        ele.style.cssText += `transition-duration: .5s;`
       })
-      if (parseInt(document.getElementsByClassName('teachers-list')[0].style.left) >= 0) {
-        Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
-          ele.style.left = parseInt(ele.style.left || 0) - totalWidth + 'px'
-        })
-      }
+      setTimeout(() => {
+        if (parseInt(teachersList[0].style.left) >= 0) {
+          Array.from(teachersList).forEach((ele, index) => {
+            ele.style.cssText += `left:${parseInt(ele.style.left || 0) - totalWidth}px; transition-duration: 0s;`
+            console.log('dddd');
+          })
+        }
+      }, 500)
     } else if (e.target.className === 'teachers-next') {
-      Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
-        ele.style.left = parseInt(ele.style.left || 0) - 238 + 'px'
+      // #next逻辑
+      Array.from(teachersList).forEach((ele, index) => {
+        ele.style.left = parseInt(ele.style.left || 0) - singleWidth + 'px'
+        ele.style.cssText += `transition-duration: .5s;`
       })
-      // 移动完后,检查,是否该偏移到第二个
-      if (parseInt(document.getElementsByClassName('teachers-list')[2].style.left) <= 0) {
-        Array.from(document.getElementsByClassName('teachers-list')).forEach((ele, index) => {
-          // ele.style.transition = 'none'
-          ele.style.left = parseInt(ele.style.left || 0) + totalWidth + 'px'
-          // setTimeout(() => {
-          // ele.style.transition = 'left 3s'
-          // }, 0)
-        })
-      }
+      // 移动完之后(!!),检查,是否该偏移到第二个
+      // #1（问题，未解决） teacherList.parentNode.classList.toggle('smooth');
+      // 目前问题:2-2替换为1-2时,仍有过渡效果
+      setTimeout(() => {
+        if (parseInt(teachersList[2].style.left) <= -singleWidth) {
+          Array.from(teachersList).forEach((ele, index) => {
+            ele.style.cssText += `left:${parseInt(ele.style.left || 0) + totalWidth}px; transition-duration: 0s;`
+          })
+        }
+      }, 500)
     }
+  },
+  test: function () {
+    console.log('0.5s只能点一次');
   }
-
 }
 PAGE.init()
