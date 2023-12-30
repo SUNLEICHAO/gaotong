@@ -9,6 +9,7 @@ const PAGE = {
     isfixed: false,
     isPlay: false,
     isCloned: false,
+    translateLeft: 0,
   },
   init: function () {
     // 初始化导航栏到顶部的距离以及导航栏的高度
@@ -46,17 +47,19 @@ const PAGE = {
     let close = document.getElementsByClassName('onlinecourses-video__close')[0];
     close.addEventListener('click', this.handleClose)
 
-    // 单点轮播图
-    // 初始化宽度
-    // let teacherList = document.getElementsByClassName('teachers-list')[0]
-    // let teacherWidth = teacherList.children[1].offsetLeft - teacherList.children[0].offsetLeft;
-    // teacherList.style.width = teacherWidth * 4 + 'px';
     // 为prev和next绑定事件
     let prev = document.getElementsByClassName('teachers-prev')[0]
     let next = document.getElementsByClassName('teachers-next')[0]
+
+    // #1 单点轮播图，初始化宽度
+    // let teacherList = document.getElementsByClassName('teachers-list')[0]
+    // let teacherWidth = teacherList.children[1].offsetLeft - teacherList.children[0].offsetLeft;
+    // teacherList.style.width = teacherWidth * 4 + 'px';
+
+    // #2 无限滚动轮播图
     this.addDom()
-    prev.addEventListener('click', this.throttle(this.handleSlide, 500))
-    next.addEventListener('click', this.throttle(this.handleSlide, 500))
+    prev.addEventListener('click', this.handleSlide)
+    next.addEventListener('click', this.handleSlide)
   },
   onEventListener: function (parentNode, action, childClassName, callback) {
     parentNode.addEventListener(action, (e) => {
@@ -212,69 +215,123 @@ const PAGE = {
     }
   },
   addDom: function () {
+    // 如果已被克隆，不再进行dom克隆
+    if (PAGE.data.isCloned) return
+
     let teacherList = document.getElementsByClassName('teachers-list')[0]
     let singleWidth = teacherList.children[1].offsetLeft;
     let totalWidth = singleWidth * teacherList.children.length;
-    if (!PAGE.data.isCloned) {
-      // 如果没有被克隆，进行dom克隆
-      let teacherListR = teacherList.cloneNode('deep')
-      teacherListR.style.position = 'absolute'
-      teacherListR.style.left = totalWidth + 'px'
-      teacherListR.style.top = '0px'
+    let teacherListR = teacherList.cloneNode('deep')
 
-      let teacherListL = teacherListR.cloneNode('deep')
-      teacherListL.style.position = 'absolute'
-      teacherListL.style.left = -totalWidth + 'px'
-      teacherListL.style.top = '0px'
+    teacherListR.style.position = 'absolute'
+    teacherListR.style.left = totalWidth + 'px'
+    teacherListR.style.top = '0px'
 
-      teacherListR.style.cssText += `transition-duration: 5s;`
-      teacherListL.style.cssText += `transition-duration: 5s;`
+    teacherList.parentNode.append(teacherListR)
 
-      teacherList.parentNode.insertBefore(teacherListL, teacherList)
-      teacherList.parentNode.append(teacherListR)
-
-      PAGE.data.isCloned = true;
-    }
+    PAGE.data.isCloned = true;
   },
   handleSlide: function (e) {
+
+    // 方式1：定时器
+    // PAGE.handleSlideWay1(e)
+
+    // 方式2：left + translateX
+    PAGE.handleSlideWay2(e)
+
+  },
+  handleSlideWay1: function (e) {
     let teachersList = document.getElementsByClassName('teachers-list');
     let singleWidth = teachersList[0].children[1].offsetLeft;
     let totalWidth = singleWidth * teachersList[0].children.length;
 
     if (e.target.className === 'teachers-prev') {
-      // #prev逻辑
+      // step1:判断是否需要重置位置
+      if (parseInt(teachersList[0].style.left || 0) >= 0) {
+        Array.from(teachersList).forEach(ele => {
+          ele.style.cssText += `left:${parseInt(ele.style.left || 0) - totalWidth}px;`
+          ele.style.cssText += `transition-duration: 0s;`;
+        })
+      }
+
+      // step2：切换上一个，动画过渡
+      setTimeout(() => {
+        Array.from(teachersList).forEach(ele => {
+          ele.style.cssText += `left:${parseInt(ele.style.left || 0) + singleWidth}px;`
+          ele.style.cssText += `transition-duration: .5s;`;
+        })
+      }, 0)
+    } else if (e.target.className === 'teachers-next') {
+      // step1和step2可以交换顺序。而实际上：先重置再切换，不容易卡顿；先切换，等500ms后重置时，如果快速点击“下一个”按钮将会出现卡顿
+      // step1：判断是否需要重置位置
+      if (parseInt(teachersList[1].style.left || 0) <= 0) {
+        Array.from(teachersList).forEach(ele => {
+          ele.style.cssText += `left:${parseInt(ele.style.left || 0) + totalWidth}px;`
+          ele.style.cssText += `transition-duration: 0s;`;
+        })
+      }
+
+      setTimeout(() => {
+        // step2：切换下一个，动画过渡
+        Array.from(teachersList).forEach(ele => {
+          ele.style.cssText += `left:${parseInt(ele.style.left || 0) - singleWidth}px;`
+          ele.style.cssText += `transition-duration: .5s;`;
+        })
+      }, 0)
+    }
+
+  },
+  handleSlideWay2: function (e) {
+    let teachersList = document.getElementsByClassName('teachers-list');
+    let singleWidth = teachersList[0].children[1].offsetLeft;
+    let totalWidth = singleWidth * teachersList[0].children.length;
+
+    if (e.target.className === 'teachers-prev') {
+      // # prev按钮
+      // #step1：判断是否需要translateX
+      if ((parseInt(teachersList[0].style.left || 0)) % 1190 === 0) {
+        PAGE.data.translateLeft += -totalWidth;
+        teachersList[0].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+        teachersList[1].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+      }
+
+      // step2:移动元素
       Array.from(teachersList).forEach((ele, index) => {
         ele.style.left = parseInt(ele.style.left || 0) + singleWidth + 'px'
-        ele.style.cssText += `transition-duration: .5s;`
       })
-      setTimeout(() => {
-        if (parseInt(teachersList[0].style.left) >= 0) {
-          Array.from(teachersList).forEach((ele, index) => {
-            ele.style.cssText += `left:${parseInt(ele.style.left || 0) - totalWidth}px; transition-duration: 0s;`
-            console.log('dddd');
-          })
-        }
-      }, 500)
+
     } else if (e.target.className === 'teachers-next') {
-      // #next逻辑
+      // # next按钮
+      // step1:判断是不是需要左移一个长度
+      if ((parseInt(teachersList[1].style.left)) % 1190 === 0 && parseInt(teachersList[1].style.left) !== 1190) {
+        PAGE.data.translateLeft += totalWidth;
+        teachersList[0].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+        teachersList[1].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+      }
+
+      // step2:移动元素
       Array.from(teachersList).forEach((ele, index) => {
-        ele.style.left = parseInt(ele.style.left || 0) - singleWidth + 'px'
-        ele.style.cssText += `transition-duration: .5s;`
+        ele.style.cssText += `left:${parseInt(ele.style.left || 0) - singleWidth}px;`
       })
-      // 移动完之后(!!),检查,是否该偏移到第二个
-      // #1（问题，未解决） teacherList.parentNode.classList.toggle('smooth');
-      // 目前问题:2-2替换为1-2时,仍有过渡效果
-      setTimeout(() => {
-        if (parseInt(teachersList[2].style.left) <= -singleWidth) {
-          Array.from(teachersList).forEach((ele, index) => {
-            ele.style.cssText += `left:${parseInt(ele.style.left || 0) + totalWidth}px; transition-duration: 0s;`
-          })
-        }
-      }, 500)
     }
   },
-  test: function () {
-    console.log('0.5s只能点一次');
+  // 暂时不用
+  leftReset: function (arg) {
+    let teachersList = document.getElementsByClassName('teachers-list');
+    let singleWidth = teachersList[0].children[1].offsetLeft;
+    let totalWidth = singleWidth * teachersList[0].children.length;
+
+    // teachersList[0].offsetWidth
+    // teachersList[0].style.cssText += `left:0px; transition-duration: 0s;`
+    // teachersList[1].style.cssText += `left:${totalWidth}px; transition-duration: 0s;`
+    // teachersList[0].offsetWidth
+    // teachersList[0].style.cssText += `transition-duration: .5s;`
+    // teachersList[1].style.cssText += `transition-duration: .5s;`
+
+    // PAGE.data.translateLeft += totalWidth * arg;
+    // teachersList[0].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+    // teachersList[1].style.cssText += `transform: translateX(${PAGE.data.translateLeft}px)`;
+
   }
 }
 PAGE.init()

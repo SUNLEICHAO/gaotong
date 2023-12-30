@@ -15,7 +15,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: #183389;
-  background: url(../img/images/sub-title-intro.png) no-repeat 0px 6px/140px;
+  background: url(../img/sub-title-intro.png) no-repeat 0px 6px/140px;
 }
 
 /* 以上为通用的属性 */
@@ -56,7 +56,7 @@ body {
   height: 458px;
   box-sizing: border-box;
   color: #fff;
-  background: url(../img/images/banner.jpg) no-repeat center/1920px 458px;
+  background: url(../img/banner.jpg) no-repeat center/1920px 458px;
 }
 
 .banner-section__text {
@@ -127,7 +127,7 @@ body {
 .onlinecourses-topic {
   width: 150px;
   margin-bottom: 30px;
-  background-image: url(../img/images/sub-title-course.jpg);
+  background-image: url(../img/sub-title-course.jpg);
 }
 
 .onlinecourses-video {
@@ -136,7 +136,7 @@ body {
   justify-content: center;
   display: flex;
   height: 538px;
-  background: url(../img/images/v.jpg);
+  background: url(../img/v.jpg);
   cursor: pointer;
 }
 
@@ -236,7 +236,7 @@ body {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background: url(../img/images/arrow-icon.png) no-repeat center/14px;
+  background: url(../img/arrow-icon.png) no-repeat center/14px;
   transform: rotate(0deg);
   transition: transform .8s;
   cursor: pointer;
@@ -258,11 +258,11 @@ body {
 .catalogue-chapter__title-download {
   width: 18px;
   height: 18px;
-  background: url(../img/images/download-icon.png) no-repeat center/18px;
+  background: url(../img/download-icon.png) no-repeat center/18px;
 }
 
 .catalogue-chapter__title-download:hover {
-  background-image: url(../img/images/download-icon-hover.png);
+  background-image: url(../img/download-icon-hover.png);
 }
 
 .catalogue-chapter__section {
@@ -337,7 +337,7 @@ body {
   width: 170px;
   height: 45px;
   margin-top: 10px;
-  background: url(../img/images/logo_qua.png) no-repeat center/170px 45px;
+  background: url(../img/logo_qua.png) no-repeat center/170px 45px;
 }
 
 .onlinecourses-info__tags-list {
@@ -373,11 +373,11 @@ body {
   width: 50px;
   height: 50px;
   margin-right: 6px;
-  background: url(../img/images/icon_weibo.png) no-repeat center;
+  background: url(../img/icon_weibo.png) no-repeat center;
 }
 
 .qq .onlinecourses-contact__item-icon {
-  background-image: url(../img/images/icon_qq.png);
+  background-image: url(../img/icon_qq.png);
 }
 
 .onlinecourses-contact__item-text {
@@ -416,7 +416,7 @@ body {
   z-index: 9;
   width: 90px;
   height: 118px;
-  background: url(../img/images/qrcode-weixin.png) no-repeat center/90px 118px;
+  background: url(../img/qrcode-weixin.png) no-repeat center/90px 118px;
 }
 
 .onlinecourses-contact__item-text-item:hover .qrcode-popup.img {
@@ -426,7 +426,7 @@ body {
 .teachers-topic {
   width: 140px;
   height: 52px;
-  background: url(../img/images/sub-title-teacher.jpg) no-repeat center;
+  background: url(../img/sub-title-teacher.jpg) no-repeat center;
 }
 
 .teachers-box {
@@ -442,7 +442,7 @@ body {
   flex-shrink: 0;
   width: 25px;
   height: 40px;
-  background: url(../img/images/arrow_left.png) no-repeat center/25px 40px;
+  background: url(../img/arrow_left.png) no-repeat center/25px 40px;
   cursor: pointer;
 }
 
@@ -452,7 +452,7 @@ body {
 
 .teachers-prev:hover,
 .teachers-next:hover {
-  background-image: url(../img/images/arrow_right-hover.png);
+  background-image: url(../img/arrow_right-hover.png);
   transform: rotate(0deg);
 }
 
@@ -474,6 +474,7 @@ body {
   /* 使用js替换，灵活性更强 */
   /* transition: all .5s; */
   transition-property: left;
+  transition-duration: .5s;
 }
 
 .teachers-item {
@@ -490,23 +491,23 @@ body {
 .teachers-item__portrait {
   width: 80px;
   height: 80px;
-  background: url(../img/images/t_1.jpg) no-repeat center;
+  background: url(../img/t_1.jpg) no-repeat center;
 }
 
 .xms .teachers-item__portrait {
-  background-image: url(../img/images/t_2.jpg);
+  background-image: url(../img/t_2.jpg);
 }
 
 .zqq .teachers-item__portrait {
-  background-image: url(../img/images/t_3.jpg);
+  background-image: url(../img/t_3.jpg);
 }
 
 .wqm .teachers-item__portrait {
-  background-image: url(../img/images/t_4.jpg);
+  background-image: url(../img/t_4.jpg);
 }
 
 .zj .teachers-item__portrait {
-  background-image: url(../img/images/t_5.jpg);
+  background-image: url(../img/t_5.jpg);
 }
 
 .teachers-item__name {
@@ -529,7 +530,7 @@ body {
   width: 320px;
   height: 50px;
   margin: 60px 0 30px;
-  background: url(../img/images/sub-title-410.png) no-repeat center/320px 50px;
+  background: url(../img/sub-title-410.png) no-repeat center/320px 50px;
 }
 
 .products-content {
@@ -543,7 +544,7 @@ body {
   flex-basis: 300px;
   width: 300px;
   height: 210px;
-  background: url(../img/images/img_1.jpg) no-repeat center/300px 210px;
+  background: url(../img/img_1.jpg) no-repeat center/300px 210px;
 }
 
 .products-title {
@@ -624,15 +625,20 @@ body {
   font-weight: 500;
   line-height: 24px;
   color: #fff;
-  background: url(../img/images/bg_red.jpg);
+  background: url(../img/bg_red.jpg);
+  cursor: pointer;
+}
+
+.products-link:hover {
+  opacity: .8;
 }
 
 .products-link:nth-child(2) {
-  background: url(../img/images/bg_ora.jpg);
+  background: url(../img/bg_ora.jpg);
 }
 
 .products-link:nth-child(3) {
-  background: url(../img/images/bg_blue.jpg);
+  background: url(../img/bg_blue.jpg);
 }
 
 .about-section {
@@ -642,7 +648,7 @@ body {
 .about-topic {
   width: 210px;
   height: 50px;
-  background: url(../img/images/about_title.jpg) no-repeat center;
+  background: url(../img/about_title.jpg) no-repeat center;
 }
 
 .about-links {
@@ -660,7 +666,7 @@ body {
 .about-link__cover {
   width: 148px;
   height: 148px;
-  background: url(../img/images/about_qualcomm.jpg) no-repeat center;
+  background: url(../img/about_qualcomm.jpg) no-repeat center;
   cursor: pointer;
 }
 
@@ -669,11 +675,11 @@ body {
 }
 
 .about-link:nth-child(2) .about-link__cover {
-  background-image: url(../img/images/about_weibo.jpg);
+  background-image: url(../img/about_weibo.jpg);
 }
 
 .about-link:nth-child(3) .about-link__cover {
-  background-image: url(../img/images/about_qq.jpg);
+  background-image: url(../img/about_qq.jpg);
 }
 
 .about-link__title {
