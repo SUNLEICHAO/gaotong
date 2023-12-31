@@ -10,6 +10,8 @@ const PAGE = {
     isPlay: false,
     isCloned: false,
     translateLeft: 0,
+    // 插件
+    swiper__teachers: null,
   },
   init: function () {
     // 初始化导航栏到顶部的距离以及导航栏的高度
@@ -51,15 +53,18 @@ const PAGE = {
     let prev = document.getElementsByClassName('teachers-prev')[0]
     let next = document.getElementsByClassName('teachers-next')[0]
 
-    // #1 单点轮播图，初始化宽度
+    // #1 单点轮播图，初始化宽度(部分代码)
     // let teacherList = document.getElementsByClassName('teachers-list')[0]
     // let teacherWidth = teacherList.children[1].offsetLeft - teacherList.children[0].offsetLeft;
     // teacherList.style.width = teacherWidth * 4 + 'px';
 
     // #2 无限滚动轮播图
-    this.addDom()
-    prev.addEventListener('click', this.handleSlide)
-    next.addEventListener('click', this.handleSlide)
+    // this.addDom()
+    // prev.addEventListener('click', this.handleSlide)
+    // next.addEventListener('click', this.handleSlide)
+
+    // #3 插件形式
+    this.initSwiper();
   },
   onEventListener: function (parentNode, action, childClassName, callback) {
     parentNode.addEventListener(action, (e) => {
@@ -314,6 +319,21 @@ const PAGE = {
         ele.style.cssText += `left:${parseInt(ele.style.left || 0) - singleWidth}px;`
       })
     }
+  },
+  initSwiper: function () {
+    PAGE.data.swiper__teachers = new fullSwipter({
+      id: 'teachers-box',
+      duration: 300,
+      isShowPagination: false,
+      // index: 0,
+      // isLock: false,
+      // translateX: 0,
+      // defaultLength: null,
+      // itemWidth: null,
+      change: function (val) {
+        console.log(val)
+      },
+    })
   },
   // 暂时不用
   leftReset: function (arg) {
